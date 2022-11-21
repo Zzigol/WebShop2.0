@@ -5,20 +5,12 @@ namespace WebShop.Data
 {
     public class AppDbContent: DbContext
     {
-        public AppDbContent(DbContextOptions options)
-        {
+        public DbSet<Car> Car { get; set; } = null!;
+        public DbSet<Category> Category { get; set; } = null!;
 
-        }
-
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\\MSSQLLocalDB;Database=Shop;Trusted_Connection=True;");
-        }
+        public AppDbContent(DbContextOptions<AppDbContent> options)
+            : base(options) { }
         
-
-        public DbSet<Car> Car { get; set; }
-        public DbSet<Category> Category { get; set; }
     }
 
 }
