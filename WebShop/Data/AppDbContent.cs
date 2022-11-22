@@ -7,7 +7,7 @@ namespace WebShop.Data
     {
         public DbSet<Car> Car { get; set; } = null!;
         public DbSet<Category> Category { get; set; } = null!;
-
+        public DbSet<ShopCartItem> ShopCartItem { get; set; } = null!;
         public AppDbContent(DbContextOptions<AppDbContent> options)
             : base(options) { }
         
