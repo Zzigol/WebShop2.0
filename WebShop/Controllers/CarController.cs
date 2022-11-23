@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebShop.Data.Interfaces;
+using WebShop.Data.Models;
 using WebShop.ViewModels;
 
 namespace WebShop.Controllers
@@ -15,14 +16,40 @@ namespace WebShop.Controllers
             _allCategories = carsCategory;
         }
 
-        public ViewResult List()
+        [Route("Cars/List")]
+        [Route("Cars/List/{category}")]
+        public ViewResult List(string category)
         {
-            ViewBag.Title = "Страница с автомобилями";
-            CarsListViewModel carsListViewModel = new CarsListViewModel();
-            carsListViewModel.allCars = _allCars.Cars;
-            carsListViewModel.CurrCategory = "Автомобили";
+            string _category = category;
+            IEnumerable<Car> cars=null;
+            string currCategory = "";
+            if (string.IsNullOrEmpty(category))
+            {
+                cars = _allCars.Cars.OrderBy(i => i.id);
+            }
+            else 
+            { 
+                if (string.Equals("electro", category, StringComparison.OrdinalIgnoreCase))
+                {
+                    cars = _allCars.Cars.Where(i => i.Category.categoryName.Equals("Электромобили")).OrderBy(i => i.id);
+                    currCategory = "Электромобили";
+                }
+                    
+                else if (string.Equals("fuel", category, StringComparison.OrdinalIgnoreCase))
+                {
+                    cars = _allCars.Cars.Where(i => i.Category.categoryName.Equals("Классические автомобили")).OrderBy(i => i.id);
+                    currCategory = "Классические автомобили";
+                }
+                    
+            }
 
-            return View(carsListViewModel);
+            
+            var carObj = new CarsListViewModel { allCars = cars, CurrCategory = currCategory };
+
+            ViewBag.Title = "Страница с автомобилями";
+            
+
+            return View(carObj);
         }
 
     }

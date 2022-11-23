@@ -58,47 +58,12 @@ using (AppDbContent db = new AppDbContent(options))
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=CarContoller}/{action=Cars/List}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=categoryFilter}/{action}/{id?}");
+
+
 
 app.Run();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-//var confBuilder = WebApplication.CreateBuilder(args);
-
-//// Add services to the container.
-//confBuilder.Services.AddControllersWithViews();
-
-//var app = confBuilder.Build();
-
-//// Configure the HTTP request pipeline.
-//if (!app.Environment.IsDevelopment())
-//{
-//    app.UseExceptionHandler("/Home/Error");
-//    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-//    app.UseHsts();
-//}
-
-//app.UseHttpsRedirection();
-//app.UseStaticFiles();
-
-//app.UseRouting();
-
-//app.UseAuthorization();
-
-//app.MapControllerRoute(
-//    name: "default",
-//    pattern: "{controller=Home}/{action=Index}/{id?}");
-
-//app.Run();

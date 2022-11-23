@@ -17,7 +17,7 @@ namespace WebShop.Controllers
             _shopCart = shopCart;
         }
 
-        public ViewResult Index()
+        public ViewResult Index2()
         {
             var items = _shopCart.GetShopItems();
             _shopCart.ListShopItem = items;
@@ -35,7 +35,7 @@ namespace WebShop.Controllers
             {
                 _shopCart.AddToCart(item);
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index2");
         }
     }
 }
