@@ -13,6 +13,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddTransient<IAllCars, CarRepozitory>();
 builder.Services.AddTransient<ICarsCategory, CategoryRepozitory>();
+builder.Services.AddTransient<IAllOrders, OrdersRepository>();
 //confBuilder.Services.AddMvc(o => o.EnableEndpointRouting = false);
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
